@@ -1,0 +1,47 @@
+<#macro pager url page>
+
+<#if page.getTotalPages() gt 7>
+	<#assign
+	totalPages = page.getTotalPages()
+	pageNumber = page.getNumber() + 1
+	head = (pageNumber gt 4)?then([1, -1], [1, 2, 3])
+	tail = (pageNumber gt totalPages-3)?then([-1, totalPages], [totalPages - 2, totalPages - 1, totalPages])
+	bodyBefore = (pageNumber lt 4 && pageNumber lt totalPages - 1)?then([pageNumber - 2,pageNumber - 1], [])
+	bodyAfter = (pageNumber gt 2 && pageNumber lt totalPages - 3)?then([pageNumber + 1,pageNumber + 2], [])
+		body = head + bodyBefore + (pageNumber gt 3 && pageNumber lt totalPages - 2)?then([pageNumber], []) + bodyBefore + tail
+	>
+<#else>
+	<#assign body = 1..page.getTotalPages()>
+</#if>
+	<div class="container mt-3">
+	<div class="row">
+	  <ul class="pagination col justify-content-center">
+	     <li class="page-item disabled">
+	      <a class="page-link" href="#" tabindex="-1">Страницы</a>
+	    </li>
+	    <#list body as p>
+	    <#if (p-1) == page.getNumber()>
+	    <li class="page-item active"><a class="page-link" href="#">${p}</a></li>
+	    <#elseif p == -1>
+	    <li class="page-item disabled"><a class="page-link" href="#">...</a></li>
+	    <#else>
+	    <li class="page-item"><a class="page-link" href="${url}?page=${p - 1}&size=${page.getSize()}" tabindex="-1">${p}</a></li>
+	    </#if>
+	    </#list>
+	  </ul>
+	  
+	  <ul class="pagination col justify-content-center">
+	     <li class="page-item disabled">
+	      <a class="page-link" href="#" tabindex="-1">Колличество на странице</a>
+	    </li>
+	    <#list [3, 5, 7, 10, 15] as c>
+	    <#if c == page.getSize()>
+	    <li class="page-item active"><a class="page-link" href="#">${c}</a></li>
+	    <#else>
+	    <li class="page-item"><a class="page-link" href="${url}?page=${page.getNumber()}&size=${c}" tabindex="-1">${c}</a></li>
+	    </#if>
+	    </#list>
+	  </ul>
+	  </div>
+	</div>
+</#macro>
