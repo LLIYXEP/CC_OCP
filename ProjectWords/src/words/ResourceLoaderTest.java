@@ -9,13 +9,25 @@ import org.junit.jupiter.api.Test;
 class ResourceLoaderTest {
 
 	@Test
-	void test() {
+	void testLoadEnglishWords() {
 		
-		ResourceLoader instance = new ResourceLoader();
+		List<String> words = ResourceLoader.loadEnglishWords();
 		
-		List<String> words = instance.loadEnglischWords();
+		int expected = 58110;
+		int actual = words.size();
 		
-		int expected = 
+		assertEquals(expected, actual);
 	}
 
+	@Test
+	void testLoadPasswords() {
+		
+		List<String> passwords = ResourceLoader.loadPasswords();
+		
+		int expected = 10000;
+		int actual = passwords.size();
+		
+		assertEquals(expected, actual);
+	}
+	
 }
