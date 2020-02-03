@@ -28,7 +28,7 @@ class Besitzer {
 
 	@Override
 	public String toString() {
-		return "Besitzer " + id + ", " + "Auto " + a;
+		return "Besitzer " + id + ", " + "Autoa " + a;
 	}
 }
 class BesitzerBuilder {
