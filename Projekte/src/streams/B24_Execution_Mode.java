@@ -16,7 +16,7 @@ public class B24_Execution_Mode {
 		
 		Stream<Integer> s1 = Stream.of(1, 2, 3);
 		
-		System.out.println("Ist Execution Mode parallel " + s1.isParallel()); // false
+		System.out.println("Ist Execution Mode paralleel " + s1.isParallel()); // false
 		
 		s1.parallel(); // Execution Mode von sequenzial auf parallel setzen
 		
