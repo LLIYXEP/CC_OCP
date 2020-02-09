@@ -11,8 +11,8 @@ public class B10_Files_copy_move {
 	
 	public static void main(String[] args) {
 		
-//		test_copy();
-		test_move();
+		test_copy();
+//		test_move();
 		
 	}
 
@@ -151,7 +151,7 @@ public class B10_Files_copy_move {
 			Files.createDirectories(target5);
 			Files.copy(source, tmpFile5, StandardCopyOption.REPLACE_EXISTING);
 			
-			System.out.println("5. myfiles5 ist Verzeichniss: " + Files.isDirectory(target5)); // false
+			System.out.println("5. myfiles5 ist Verzeichniss: " + Files.isDirectory(target5)); // true
 			
 			// test copy
 			Files.copy(source, target5, StandardCopyOption.REPLACE_EXISTING); 

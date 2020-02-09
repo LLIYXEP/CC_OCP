@@ -14,7 +14,7 @@ public class B08_Files_walk_find_vs_lines_readAllLines {
 	
 	public static void main(String[] args) throws IOException {
 		
-		walk_und_find();
+//		walk_und_find();
 		lines_und_readAllLines();
 		
 	}

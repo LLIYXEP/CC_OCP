@@ -10,18 +10,18 @@ public class B05_Path_API {
 		
 //		testEquals();
 //		test_getNameCount_getName();
-//		test_getRoot_getParent_getFileName();
+		test_getRoot_getParent_getFileName();
 //		test_supath();
 //		test_relativize();
 //		test_resolve();
-		test_weitere();
+//		test_weitere();
 	}
 	
 	static void	test_weitere() {
 		System.out.println("***** nicht so Prufungsrelevant");
 		
 		Path path = Paths.get("a/b/./c/../d");
-		System.out.println(path.normalize()); //a\b\d
+		System.out.println("path.normalize(): " + path.normalize()); //a\b\d
 		System.out.println(path.getNameCount()); // 6
 		System.out.println(path.subpath(1, 5)); // b\.\c\..
 		System.out.println(path.toAbsolutePath()); // D:\Eclipse Projects OCP\CC_OCP\IO\a\b\.\c\..\d
@@ -136,7 +136,7 @@ public class B05_Path_API {
 		System.out.println("path: " + path);
 		
 		root = path.getRoot();		
-		System.out.println("getRoot() " + root); // null
+		System.out.println("getRoot() " + root); // C:\
 		
 		parent = path.getParent();
 		System.out.println("getParent() " + parent);  // a

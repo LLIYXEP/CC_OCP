@@ -10,9 +10,9 @@ public class B06_Files_API_Simple {
 
 	public static void main(String[] args) {
 		
-//		testExists();
+		testExists();
 //		testIsSameFile();
-		testInfoMethoden();
+//		testInfoMethoden();
 		
 	} // end of main
 	

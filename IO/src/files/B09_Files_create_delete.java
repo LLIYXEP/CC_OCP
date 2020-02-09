@@ -12,8 +12,9 @@ public class B09_Files_create_delete {
 		
 //		test_createFile();
 //		test_createDirectory();
-//		test_createDirectories();
-		test_deletIfExists();
+		test_createDirectories();
+//		test_deletIfExists();
+//		test_delet();
 		
 	}
 	
@@ -29,7 +30,7 @@ public class B09_Files_create_delete {
 			Path file = dir.resolve("dozent");
 			Files.createFile(file);
 			
-			System.out.println("file: " + file + "ist da: " + Files.exists(file));
+			System.out.println("file: " + file + " ist da: " + Files.exists(file));
 			
 			try {
 				Files.deleteIfExists(dir);
