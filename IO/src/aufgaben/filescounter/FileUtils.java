@@ -3,28 +3,33 @@ package aufgaben.filescounter;
 import java.nio.file.Path;
 
 public class FileUtils {
-
 	
-	/*
-	 * true: 
+	
+	/**
+	 * true:
+	 * 	
 	 * 	file.txt
 	 * 	file.abc.txt
-	 *	file...txt
-	 *
+	 * 	file...txt
+	 * 
 	 * false:
+	 * 
+	 *  file
 	 * 	.txt
+	 *  file.
+	 * 
 	 */
-	
 	public static boolean hasExtension(Path file, String extension) {
 		String fileName = file.getFileName().toString();
 		
-		int intPosition = fileName.lastIndexOf('.');
+		int posOfPoint = fileName.lastIndexOf('.');
 		
-		if (intPosition <= 0 || intPosition == fileName.length() - 1) {
+		if(posOfPoint<=0 || posOfPoint==fileName.length()-1) {
 			return false;
 		}
 		
-		return fileName.substring(intPosition+1).equals(extension);
+		return fileName.substring(posOfPoint+1).equals(extension);
 	}
 	
+
 }

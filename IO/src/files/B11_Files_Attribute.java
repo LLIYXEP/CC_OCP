@@ -16,126 +16,115 @@ import java.util.concurrent.TimeUnit;
 
 public class B11_Files_Attribute {
 	
-	static Path testSource;
+	static final Path testSource;
 	
 	static {
 		Path src = Paths.get("abc.txt").toAbsolutePath();
 		try {
 			testSource = Files.copy(src, src.getParent().resolve("buchstaben"), StandardCopyOption.REPLACE_EXISTING);
+			
 		} catch (IOException e) {
 			throw new UncheckedIOException(e);
 		}
 	}
-	
+
 	public static void main(String[] args) throws IOException {
-		
-//		simpleMethods();
-//		time();
+		simpleMethods();
+		time();
 		attributes();
-		
 	}
 	
 	static void attributes() throws IOException {
-		
-		System.out.println("****** Attributes");
+		System.out.println("*** Attributes");
 		
 		System.out.println("Datei: " + testSource);
 		
-		System.out.println("Mit BasicFileAttributes");
+		System.out.println("* mit BasicFileAttributes: ");
+		
 		BasicFileAttributes basicAtts = Files.readAttributes(testSource, BasicFileAttributes.class);
-		System.out.println("size " + basicAtts.size());
-		System.out.println("isDirectory " + basicAtts.isDirectory());
-		System.out.println("isRegularFile " + basicAtts.isRegularFile());
-		System.out.println("creationTime " + basicAtts.creationTime());
-		System.out.println("lastAccessTime " + basicAtts.lastAccessTime());
-		System.out.println("lastModifiedTime " + basicAtts.lastModifiedTime());
+		System.out.println("size: "  + basicAtts.size());
+		System.out.println("isDirectory: "  + basicAtts.isDirectory());
+		System.out.println("isRegularFile: "  + basicAtts.isRegularFile());
+		System.out.println("creationTime: "  + basicAtts.creationTime());
+		System.out.println("lastAccessTime: "  + basicAtts.lastAccessTime());
+		System.out.println("lastModifiedTime: "  + basicAtts.lastModifiedTime());
 		
-		DosFileAttributes dosAtts = null;   // DosFileAttributes extends BasicFileAttributes
+		DosFileAttributes dosAtts = null; // DosFileAttributes extends BasicFileAttributes
 		PosixFileAttributes posixAtts = null; // PosixFileAttributes extends BasicFileAttributes
-		
-		System.out.println("Mit get Attributes");
-		Object sizeObj = Files.getAttribute(testSource, "basic:size");
-		System.out.println("basic:size - " + sizeObj);
+	
+		System.out.println("* mit getAttribute: ");
+		Object sizeObj = Files.getAttribute(testSource, "size");
+		System.out.println("size = " + sizeObj);
 		
 		sizeObj = Files.getAttribute(testSource, "basic:size");
-		System.out.println("basic:size - " + sizeObj);
+		System.out.println("basic:size = " + sizeObj);
 		
-//		System.out.println(Files.getAttribute(testSource, "dos:isHidden")); //  EXC
-		System.out.println("dos:hidden - " + Files.getAttribute(testSource, "dos:hidden"));   // false
-		
-		Files.setAttribute(testSource, "dos:hidden", true);
-		
-		System.out.println("dos:hidden - " + Files.getAttribute(testSource, "dos:hidden"));   // true
-		
+		// hie unterstützte namen für DosFileAttributes:
+		// https://docs.oracle.com/javase/8/docs/api/java/nio/file/attribute/DosFileAttributeView.html
+		System.out.println( "dos:hidden = " +  Files.getAttribute(testSource, "dos:hidden") ); // false (exam)
+		Files.setAttribute(testSource, "dos:hidden", true); // exam
+		System.out.println( "dos:hidden = " + Files.getAttribute(testSource, "dos:hidden") ); // true (exam)
 	}
 	
 	static void time() throws IOException {
+		System.out.println("*** Zeit-Eigenschaften");
 		
-		System.out.println("***** Zeit - Eigenschaften");
-		System.out.println(" ** getLastModifiedTime - setLastModifiedTime");
+		System.out.println("* Zeit mit getLastModifiedTime, setLastModifiedTime");
 		
 		/*
-		 * FileTime -  getLastModifiedTime
-		 * 
-		 * path - setLastModifiedTime
+		 *  FileTime getLastModifiedTime(Path)
+		 *  
+		 *  Path setLastModifiedTime(Path, FileTime)
 		 */
 		
 		System.out.println("Datei: " + testSource);
+		FileTime lastModified = Files.getLastModifiedTime(testSource);
+		System.out.println("last modified: " + lastModified); //  2020-02-05T07:58:37.053111Z
 		
-		FileTime lastModifiedTime = Files.getLastModifiedTime(testSource);
-		System.out.println("getLastModifiedTime: " + lastModifiedTime); // 2020-02-07T07:56:00.218765Z
+		lastModified = FileTime.from(0, TimeUnit.DAYS);
+		Files.setLastModifiedTime(testSource, lastModified); // last modified ändern
 		
-		FileTime time = FileTime.from(0, TimeUnit.DAYS);
-		Files.setLastModifiedTime(testSource, time);
-		lastModifiedTime = Files.getLastModifiedTime(testSource);
-		System.out.println("getLastModifiedTime: " + lastModifiedTime);  // 1970-01-01T00:00:00Z
+		lastModified = Files.getLastModifiedTime(testSource);
+		System.out.println("last modified: " + lastModified);  // 1970-01-01T00:00:00Z
 		
-		System.out.println("Zeit mit BasicFile Attributes View");
+		
+		System.out.println("* Zeit mit BasicFileAttributeView ");
 		
 		BasicFileAttributeView view = Files.getFileAttributeView(testSource, BasicFileAttributeView.class);
 		
-		FileTime lastModifiedTime2 = FileTime.from(Instant.now().plusSeconds(200));
+		FileTime lastModifiedTime = FileTime.from(Instant.now());
 		FileTime lastAccessTime = null;
 		FileTime createTime = null;
-		view.setTimes(lastModifiedTime2, lastAccessTime, createTime);
+		view.setTimes(lastModifiedTime, lastAccessTime, createTime);
 		
-		lastModifiedTime = Files.getLastModifiedTime(testSource);
-		System.out.println("getLastModifiedTime: " + lastModifiedTime);  
+		lastModified = Files.getLastModifiedTime(testSource);
+		System.out.println("last modified: " + lastModified);  // 2020-02-07T08:29:03.663304Z
+		
 		
 		BasicFileAttributes atts = view.readAttributes();
-		System.out.println("last access time: " + atts.lastAccessTime());
-		System.out.println("creation time: " + atts.creationTime());
-	}
-
-	static void simpleMethods() throws IOException {
-		
-		System.out.println("Datei: " + testSource);
-		
-		boolean result;
-		result = Files.isRegularFile(testSource);
-		System.out.println("isRegularFile: " + result);
-		
-		long size = Files.size(testSource);
-		
-		System.out.println("size: " + size);
-		
-		boolean executable = Files.isExecutable(testSource);
-		System.out.println("isExecutable: " + executable);
-		
-		boolean hidden = Files.isHidden(testSource);
-		System.out.println("isHidden: " + hidden);
-		
-		boolean readable = Files.isReadable(testSource);
-		System.out.println("isReadable: " + readable);
-		
-		boolean writable = Files.isWritable(testSource);
-		System.out.println("isWritable: " + writable);
-		
-		boolean symbolik = Files.isSymbolicLink(testSource);
-		System.out.println("isSymbolicLink: " + symbolik);
-		
-		
-		
+		System.out.println( "last access: " + atts.lastAccessTime() );
+		System.out.println( "created: " + atts.creationTime());
 	}
 	
+	static void simpleMethods() throws IOException {
+		
+		System.out.println("*** einfache Methoden");
+		
+		System.out.println("Datei: " + testSource);
+		boolean result;
+		
+		result = Files.isRegularFile(testSource);
+		System.out.println("isRegularFile: " + result);  // true
+		
+		long size = Files.size(testSource);
+		System.out.println("size: " + size); // 3 (in byte)
+		
+		result = Files.isExecutable(testSource);
+		result = Files.isHidden(testSource);
+		result = Files.isReadable(testSource);
+		result = Files.isWritable(testSource);
+
+	}
+
 }
+

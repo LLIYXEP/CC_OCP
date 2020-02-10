@@ -1,4 +1,5 @@
-set java_path=C:\local\jdk-11.0.4+11\bin
+::bitte den Java-Pfad richtig für Ihren Rechner einstellen:
+set java_path=C:\Local\jdk-11.0.5+10\bin
 
 %java_path%\java -version
 

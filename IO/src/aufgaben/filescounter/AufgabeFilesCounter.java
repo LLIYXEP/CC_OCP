@@ -2,35 +2,43 @@ package aufgaben.filescounter;
 
 import java.io.IOException;
 
+/*
+ * Achtung! Bei der Lösung wurde die Aufgabestellung etwas modifiziert.
+ * 
+ * Unterschiedliche FilesCounter-Realisierungen werden entweder direkt (flach, 'flat') 
+ * oder rekursiv ('deep') nach Dateien in der Methode 'count' suchen (also keine zusätzliche Methode 'countDeep').
+ */
 public class AufgabeFilesCounter {
 
 	public static void main(String[] args) throws IOException {
+		String dirName = "C:\\Program Files\\7-Zip";
+//		String dirName = "C:\\Windows";
+//		String dirName = "C:\\";
 		
-		String extension = "txt";
-//		String dirName = "C:\\local";
-		String dirName = "C:\\Windows";  // 1 // Exc
-		
-		System.out.println("Flat suche mit Files.newDirectoryStream");
-		testFilesCounterRealisation(new FlatFilesCounterV1(dirName), extension, dirName); // 1
+		System.out.println("*** Flat-Search mit Files.newDirectoryStream");
+		testFilesCounterRealisation( new FlatFilesCounterV1(dirName) ); // 3
 		
 		
-		System.out.println("Deep Search mit Files.walk");
+		
+		System.out.println("*** Deep-Search mit Files.walk");
 		try {
-			testFilesCounterRealisation(new DeepFilesCounterV2(dirName), extension, dirName); // 53
+			testFilesCounterRealisation( new DeepFilesCounterWalk(dirName) ); // 91
+			
 		} catch (Exception e) {
-			System.err.println("Fehler!!!: " + e);
+			System.out.println("Fehler!!!: " + e);
 		}
 		
-		System.out.println("Deep Search mit Files.WalkFileTree");
-		testFilesCounterRealisation(new DeepFilesCounterWalkFileTree(dirName), extension, dirName); // 3
+		
+		System.out.println("*** Deep-Search mit Files.walkFileTree");
+		testFilesCounterRealisation( new DeepFilesCounterWalkFileTree(dirName) ); // 91
 		
 	}
-	
-	
-	static void testFilesCounterRealisation(FilesCounter fc, String extension, String dirName) throws IOException {
+
+	static void testFilesCounterRealisation(FilesCounter fc) throws IOException {
+		String extension = "txt";
+		
 		int count = fc.count(extension);
-		System.out.println("1. count: " + count);
+		System.out.println("count: " + count);
 	}
-	
 	
 }

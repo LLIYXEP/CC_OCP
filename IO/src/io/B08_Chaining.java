@@ -7,20 +7,31 @@ import java.io.IOException;
 public class B08_Chaining {
 
 	public static void main(String[] args) throws IOException {
+
+		/*
+		 * Bitte immer nur den äußeren Stream zum Lesen/Schreiben verwenden!
+		 */
 		
-		FileWriter fw = new  FileWriter("xyz.txt");
+		/*
+		 * Bitte NICHT SO:
+		 */
+		
+		FileWriter fw = new FileWriter("xyz.txt");
 		
 		BufferedWriter out = new BufferedWriter(fw);
 		
-		out.write('x'); // zwischenpuffer in out
+		out.write('x'); // zwischenpuffern in out-Puffer [x]
 		
-		fw.write('z');	// zwischenpuffer in fw
+		fw.write('z'); // zwischenpuffern in fw-Puffer: [z]
 		
-		out.close(); // z x
+		out.close(); // dadurch wird auch der FileWriter geschlossen,
+					 // aber zuerst wird zwischenpuffer aus out an das Ziel geschoben:
+					 // so sieht dann der Puffer von fw aus: [zx]	
 		
+				
 		
 		/*
-		 * Besser mit Constructor Chaining und dann immer nur einer Writer-Variable
+		 * besser mit Constructor-Chaining und dann immer nur einer Writer-Variable:
 		 */
 		
 		BufferedWriter writer = new BufferedWriter(new FileWriter("hallo.txt"));
@@ -30,8 +41,9 @@ public class B08_Chaining {
 		
 		writer.close();
 		
+		
 		System.out.println("fertig");
 		
 	}
-	
+
 }

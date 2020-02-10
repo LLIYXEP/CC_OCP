@@ -1,55 +1,45 @@
 package io.aufgaben.arrays;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.util.ArrayList;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.UncheckedIOException;
 import java.util.Arrays;
 import java.util.Random;
 
 class ArrayUtils {
-	static int[] createRandomIntArray(int len, int min, int max) {
-		int[] newArr = new int[len];
+	public static int[] createRandomIntArray(int len, int min, int max) {
+		int[] arr = new int[len];
 		
-		for (int i = 0; i < len; i++) {
-			int random = new Random().nextInt(max - min + 1) + min;
-			newArr[i] = random;
+		Random random = new Random();
+		for (int i = 0; i < arr.length; i++) {
+			arr[i] = random.nextInt(max - min + 1) + min;
 		}
 		
-		return newArr;
+		return arr;
 	}
 
-	public static void saveToFile(int[] arr1, String string) {
-		
-		try (BufferedWriter in = new BufferedWriter(new FileWriter(string))) {
-			char[] newArr = new char[arr1.length];
+	public static void saveToFile(int[] arr, String fileName) {
+
+		try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName))) {
+			oos.writeObject(arr);
 			
-			for (int i = 0; i < newArr.length; i++) {
-				in.write(Integer.toString(arr1[i]));
-				in.newLine();
-			}
-		} catch (Exception e) {
-			System.err.println(e);
+		} catch (IOException e) {
+			throw new UncheckedIOException(e);
 		}
-		
 	}
 
-	public static int[] loadFromFile(String string) {
-		ArrayList<Integer> newArr = new ArrayList<Integer>();
-		try (BufferedReader out = new BufferedReader(new FileReader(string))) {
+	public static int[] loadFromFile(String fileName) {
+		try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName))) {
+			return (int[]) ois.readObject();
 			
-			String s = "";
-			while ((s = out.readLine()) != null) {
-				
-				System.out.print(s + ", ");
-				newArr.add(Integer.valueOf(s));
-				
-			}
-		} catch (Exception e) {
-			
+		} catch (IOException e) {
+			throw new UncheckedIOException(e);
+		} catch (ClassNotFoundException e) {
+			throw new IllegalArgumentException(e);
 		}
-		return null;
 	}
 }
 

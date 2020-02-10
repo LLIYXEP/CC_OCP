@@ -4,104 +4,96 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
 
+/*
+ * Es gibt keine IOExceptions in der Prüfung aus den Methoden skip, mark und reset. 
+ * In der Praxis ist es anders.
+ */
 public class B05_mark_reset_skip {
-	
+
 	public static void main(String[] args) throws IOException {
-		
-//		testSkip();
+		testSkip();
 		testMarkAndReset();
-		
 	}
 	
-	
-	static void testMarkAndReset() throws IOException {
+	public static void testMarkAndReset() throws IOException {
+		System.out.println("*** mark, reset");
 		
-		/*
-		 * Methode 'Mark And Reset'
-		 */
 		try(Reader in = new StringReader("aXbYcZd")) {
 			
-			/*
-			 * 0123456
-			 * aXbYcZd
-			 * |<- Virtueller Zeiger, gesetzt auf den 1 Zeichen im Input
-			 */
+//			0123456
+//			aXbYcZd
+//		    | <- virtueller Zeiger, gesetzt auf das 1. Zeichen im Input
 			
-			System.out.println((char)in.read()); // a geliefert, Zeiger verschoben
+			System.out.println( (char)in.read() ); // a geliefert, Zeiger verschoben
 			
-			/*
-			 * 0123456
-			 * aXbYcZd
-			 *  |<- Virtueller Zeiger, gesetzt auf den 1 Zeichen im Input
-			 */
+//			0123456
+//			aXbYcZd
+//		     | <- virtueller Zeiger
+			
 			int readAheadLimit = 10;
-			in.mark(readAheadLimit); //  Amrkirung setzen
+			in.mark(readAheadLimit);  // Markierung setzen
 			
-			in.read();
-			in.read();
+			
+			in.read(); // Zeiger verschoben
+			in.read(); // Zeiger verschoben
+			
+//			0123456
+//			aXbYcZd
+//		       | <- virtueller Zeiger
+			
+			in.reset(); // den Zeiger zu der Markierung zurückschieben
+
+//			0123456
+//			aXbYcZd
+//		     | <- virtueller Zeiger
+
+			System.out.println( (char)in.read() ); // X geliefert, Zeiger verschoben
+			
+//			0123456
+//			aXbYcZd
+//		      | <- virtueller Zeiger
+		}
+	}
+	
+	public static void testSkip() throws IOException {
+		System.out.println("*** skip");
+		
+		try(Reader in = new StringReader("aXbYcZd")) {
+			
+//			0123456
+//			aXbYcZd
+//		    | <- virtueller Zeiger, gesetzt auf das 1. Zeichen im Input
+
+			System.out.println( (char)in.read() ); // a geliefert, Zeiger verschoben
+			
+//			0123456
+//			aXbYcZd
+//		     | <- virtueller Zeiger
+			
+			System.out.println( (char)in.read() ); // X geliefert, Zeiger verschoben
+			
+//			0123456
+//			aXbYcZd
+//		      | <- virtueller Zeiger
+			
 			
 			/*
-			 * 0123456
-			 * aXbYcZd
-			 *    |<- Virtueller Zeiger, gesetzt auf den 1 Zeichen im Input
+			 * Methode 'skip(long)'
 			 */
+			in.skip(3); // den Zeiger 3 Elemente weiter schieben
 			
-			in.reset(); // den Zeiger zu der Markierung zuruckschieben
+//			0123456
+//			aXbYcZd
+//		         | <- virtueller Zeiger
 			
-			/*
-			 * 0123456
-			 * aXbYcZd
-			 *  |<- Virtueller Zeiger, gesetzt auf den 1 Zeichen im Input
-			 */
+			System.out.println( (char)in.read() ); // Z geliefert, Zeiger verschoben
 			
-			System.out.println((char)in.read()); // X geliefert, Zeiger verschoben
+//			0123456
+//			aXbYcZd
+//		          | <- virtueller Zeiger
 		}
 		
+
 	}
 
-	static void testSkip() throws IOException {
-		
-		/*
-		 * Methode 'skip'
-		 */
-		try(Reader in = new StringReader("aXbYcZd")) {
-			
-			/*
-			 * 0123456
-			 * aXbYcZd
-			 * |<- Virtueller Zeiger, gesetzt auf den 1 Zeichen im Input
-			 */
-			System.out.println((char)in.read()); // a geliefert, Zeiger verschoben
-				
-			/*
-			 * 0123456
-			 * aXbYcZd
-			 *  |<- Virtueller Zeiger
-			 */
-			System.out.println((char)in.read()); // X geliefert, Zeiger verschoben
-			
-			/*
-			 * 0123456
-			 * aXbYcZd
-			 *   |<- Virtueller Zeiger
-			 */
-			in.skip(3);   // den Zeiger 3 Elemente weiter schieben
-			
-			/*
-			 * 0123456
-			 * aXbYcZd
-			 *      |<- Virtueller Zeiger
-			 */
-			System.out.println((char)in.read()); // Z geliefert, Zeiger verschoben
-			
-			/*
-			 * 0123456
-			 * aXbYcZd
-			 *       |<- Virtueller Zeiger
-			 */
-			System.out.println((char)in.read()); // d geliefert, Zeiger verschoben
-		}
-		
-	}
-	
 }
