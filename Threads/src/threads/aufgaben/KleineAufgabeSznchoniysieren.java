@@ -38,7 +38,7 @@ public class KleineAufgabeSznchoniysieren {
 		public Printer(char ch, int numb, int zeilen) {
 			this.countZeilen = zeilen;
 			
-			String textZeile = Stream.generate(() -> String.valueOf(ch))
+			this.textZeile = Stream.generate(() -> String.valueOf(ch))
 								.limit(numb)
 								.collect(Collectors.joining());
 		}
