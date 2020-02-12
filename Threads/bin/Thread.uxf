@@ -4,8 +4,8 @@
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>30</x>
-      <y>300</y>
+      <x>90</x>
+      <y>470</y>
       <w>20</w>
       <h>20</h>
     </coordinates>
@@ -15,8 +15,8 @@
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>200</x>
-      <y>290</y>
+      <x>260</x>
+      <y>460</y>
       <w>90</w>
       <h>40</h>
     </coordinates>
@@ -26,8 +26,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>40</x>
-      <y>290</y>
+      <x>100</x>
+      <y>460</y>
       <w>180</w>
       <h>40</h>
     </coordinates>
@@ -38,8 +38,8 @@ new Thread()</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>430</x>
-      <y>290</y>
+      <x>490</x>
+      <y>460</y>
       <w>90</w>
       <h>40</h>
     </coordinates>
@@ -49,8 +49,8 @@ new Thread()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>280</x>
-      <y>290</y>
+      <x>340</x>
+      <y>460</y>
       <w>170</w>
       <h>40</h>
     </coordinates>
@@ -61,8 +61,8 @@ start()</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>650</x>
-      <y>290</y>
+      <x>710</x>
+      <y>460</y>
       <w>90</w>
       <h>40</h>
     </coordinates>
@@ -72,8 +72,8 @@ start()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>510</x>
-      <y>290</y>
+      <x>570</x>
+      <y>460</y>
       <w>160</w>
       <h>40</h>
     </coordinates>
@@ -84,8 +84,8 @@ Scheduler</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>510</x>
-      <y>300</y>
+      <x>570</x>
+      <y>470</y>
       <w>160</w>
       <h>30</h>
     </coordinates>
@@ -95,8 +95,8 @@ Scheduler</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>870</x>
-      <y>290</y>
+      <x>930</x>
+      <y>460</y>
       <w>90</w>
       <h>40</h>
     </coordinates>
@@ -106,8 +106,8 @@ Scheduler</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>730</x>
-      <y>290</y>
+      <x>790</x>
+      <y>460</y>
       <w>160</w>
       <h>40</h>
     </coordinates>
@@ -118,8 +118,8 @@ Scheduler</panel_attributes>
   <element>
     <id>UMLSpecialState</id>
     <coordinates>
-      <x>1070</x>
-      <y>300</y>
+      <x>1130</x>
+      <y>470</y>
       <w>20</w>
       <h>20</h>
     </coordinates>
@@ -129,8 +129,8 @@ Scheduler</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>950</x>
-      <y>300</y>
+      <x>1010</x>
+      <y>470</y>
       <w>140</w>
       <h>30</h>
     </coordinates>
@@ -140,8 +140,8 @@ Scheduler</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>540</x>
-      <y>90</y>
+      <x>600</x>
+      <y>260</y>
       <w>90</w>
       <h>40</h>
     </coordinates>
@@ -151,8 +151,8 @@ Scheduler</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>580</x>
-      <y>120</y>
+      <x>640</x>
+      <y>290</y>
       <w>130</w>
       <h>190</h>
     </coordinates>
@@ -163,13 +163,48 @@ sleep(n)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>470</x>
-      <y>120</y>
+      <x>530</x>
+      <y>290</y>
       <w>150</w>
       <h>190</h>
     </coordinates>
     <panel_attributes>lt=-&gt;
 nach n Millis</panel_attributes>
     <additional_attributes>100.0;10.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>600</x>
+      <y>120</y>
+      <w>90</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>JOINING</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>680</x>
+      <y>130</y>
+      <w>220</w>
+      <h>350</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+otherThread.join()</panel_attributes>
+    <additional_attributes>90.0;330.0;90.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>490</x>
+      <y>120</y>
+      <w>150</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+other Thread is Dead</panel_attributes>
+    <additional_attributes>110.0;20.0;30.0;20.0;30.0;340.0</additional_attributes>
   </element>
 </diagram>

@@ -5,7 +5,7 @@ public class B07_ThreadBeenden_interrupt {
 	static class MyExtraThreadLogic implements Runnable {
 		@Override
 		public void run() {
-			while (true) {
+			while (!Thread.currentThread().isInterrupted()) { // while true
 				System.out.println("* laufe...");
 				try {
 					Thread.sleep(1000);
