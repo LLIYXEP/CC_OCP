@@ -32,7 +32,7 @@ public class B08_join {
 		
 		try {
 			/*
-			 * Der Thred in dem die Methode join aufgerufen wird (hier: main Thread)
+			 * Der Thread in dem die Methode join aufgerufen wird (hier: main Thread)
 			 * wird angehalten, solange der Thread zu dem die join aufgerufen wurde  ausgefuhrt wird.
 			 * 
 			 * Wenn s1 im Zustand 'NEW' ist, wird der main - Thread nicht angehalten.

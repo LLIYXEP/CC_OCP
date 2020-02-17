@@ -13,9 +13,9 @@ public class B08_Coll_Blocking {
 	
 	public static void main(String[] args) throws InterruptedException {
 		
-//		normaleMethoden();
+		normaleMethoden();
 //		blockingMethoden();
-		blockingMethodenMitTeimer();
+//		blockingMethodenMitTeimer();
 	}
 	
 	public static void blockingMethodenMitTeimer()  {
@@ -85,7 +85,7 @@ public class B08_Coll_Blocking {
 		target = () -> {
 			MyThreadUtils.pause(2000);
 			queu.offer("d");
-			System.out.println(" extra-thread: offer"); // a
+			System.out.println(" extra-thread: offer");
 		};
 		new Thread(target).start();
 		System.out.println(queu.take()); // b

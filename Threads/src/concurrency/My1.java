@@ -3,44 +3,38 @@ package concurrency;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.FutureTask;
 
 public class My1 {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException, ExecutionException {
 		
-		NameList nameList = new NameList();
-		nameList.add("fisrt");
+		ExecutorService executorService = Executors.newFixedThreadPool(2);
 		
-		class MyThread extends Thread {
-			@Override
-			public void run() {
-				System.out.println(nameList.removeFirst());
-			}
+		executorService.submit(new MyRunnable());
+		System.out.println(executorService.submit(new MyCallable()).get());
+		
+		executorService.shutdown();
+	}
+	
+	static class MyRunnable implements Runnable {
+
+		@Override
+		public void run() {
+			System.out.println(1);
 		}
-		
-		MyThread myThread = new MyThread();
-		myThread.setName("one");
-		myThread.start();
-		
-		MyThread myThread2 = new MyThread();
-		myThread2.start();
-		
 		
 	}
 	
-	static class NameList {
-		
-		private List<String> list = Collections.synchronizedList(new ArrayList<>());
-		
-		public void add(String name) {
-			list.add(name);
-		}
-		
-		public synchronized String removeFirst() {
-			if (list.size() > 0) {
-				return list.remove(0);
-			}
-			return null;
+	static class MyCallable implements Callable<String>{
+
+		@Override
+		public String call() throws Exception {
+			return "2";
 		}
 		
 	}
