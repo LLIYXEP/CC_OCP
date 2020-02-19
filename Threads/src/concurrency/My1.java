@@ -1,8 +1,11 @@
 package concurrency;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -13,12 +16,29 @@ public class My1 {
 
 	public static void main(String[] args) throws InterruptedException, ExecutionException {
 		
-		ExecutorService executorService = Executors.newFixedThreadPool(2);
+//		ExecutorService executorService = Executors.newFixedThreadPool(2);
+//		
+//		executorService.submit(new MyRunnable());
+//		System.out.println(executorService.submit(new MyCallable()).get());
+//		
+//		executorService.shutdown();
 		
-		executorService.submit(new MyRunnable());
-		System.out.println(executorService.submit(new MyCallable()).get());
+		Collection<Integer> col = Arrays.asList(1,2,3);
 		
-		executorService.shutdown();
+		col.parallelStream().forEach(System.out::println);
+		
+		System.out.println("-----------");
+		
+		List<Integer> daten = Arrays.asList(12,14,16,18);
+		
+		Integer result = daten.parallelStream()
+				.filter( x -> {
+					return true;})
+				.findFirst()
+				.get();
+		
+		System.out.println(result);
+		
 	}
 	
 	static class MyRunnable implements Runnable {
