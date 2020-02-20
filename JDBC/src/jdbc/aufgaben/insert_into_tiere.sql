@@ -1,0 +1,1 @@
+INSERT INTO `java_test_db`.`tiere` (`id`, `name`, `alter`) VALUES (?, ?, ?);
