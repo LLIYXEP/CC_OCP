@@ -24,13 +24,14 @@ public class MySqlUtils {
 				
 				try (ResultSet res = stm.executeQuery(sql)) {
 					
+					System.out.printf("| %3s | %10s | %5s | %n", 
+							"id",
+							"name",
+							"alter");
 					while (res.next()) {
-						
-						int id = res.getInt(1); // mit dem Spalten-Index
-						id = res.getInt("id");  // mit dem Spalten Namen
-						
-						System.out.printf("id: %3d, name: %7s, alter: %3d %n", 
-								id,
+					
+						System.out.printf("| %3d | %10s | %5d | %n", 
+								res.getInt("id"),
 								res.getString("name"),
 								res.getInt(3));
 					}
@@ -87,7 +88,7 @@ public class MySqlUtils {
 		
 	}
 	
-	static void buildTableTiere()  {
+	public static void buildTableTiere()  {
 		try (Connection connection = getConnection();) {
 			
 			try (Statement stm = connection.createStatement()) {

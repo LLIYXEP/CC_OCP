@@ -22,6 +22,7 @@ public class MySqlUtilsTest {
 		 * A2
 		 */
 		
+		
 		MySqlUtils.removeTableTiere();
 		
 		MySqlUtils.buildTableTiere();
