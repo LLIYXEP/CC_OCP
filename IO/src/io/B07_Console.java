@@ -1,8 +1,5 @@
 package io;
 
-import java.io.Console;
-import java.time.LocalDate;
-
 /*
  * Folgende main wird nicht in der Eclipse-Konsole laufen. 
  * Zum Ausproblieren muss die Anwendung in der richtigen Konsole gestartet werden:
@@ -23,13 +20,16 @@ public class B07_Console {
 
 	public static void main(String[] args) {
 
+
 //		Console console = new Console(); // exam (Compilerfehler)
 		Console console = System.console();
 		
 		/*
 		 * Ausgeben
 		 */
-		console.format("heute ist %s %n", LocalDate.now());		
+		
+		
+		console.format("heute ist %s %n", LocalDate.now());	
 		console.printf("morgen ist %s %n", LocalDate.now().plusDays(1));		
 		
 		/*
