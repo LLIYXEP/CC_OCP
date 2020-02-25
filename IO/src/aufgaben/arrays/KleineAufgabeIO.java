@@ -30,9 +30,11 @@ public class KleineAufgabeIO {
 		 * und loadFromFile (Array aus einer Datei laden) entwickeln.
 		 */
 		
-		ArrayUtils.saveToFile(arr1, "array.txt"); 
+//		ArrayUtils.saveToFile(arr1, "array.txt"); 
+		ArrayUtils.saveToFile2(arr1, "array.txt"); 
 		
-		int[] arr2 = ArrayUtils.loadFromFile("array.txt");
+//		int[] arr2 = ArrayUtils.loadFromFile("array.txt");
+		int[] arr2 = ArrayUtils.loadFromFile2("array.txt");
 
 		System.out.println("arr2: " + Arrays.toString(arr2));
 		

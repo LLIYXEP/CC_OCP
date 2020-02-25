@@ -18,11 +18,11 @@ public class B07_Files_Walking {
 		
 		System.out.println("**************************");
 		System.out.println("*** mit walk v1");
-		mit_walk_v1(dir);
+//		mit_walk_v1(dir);
 		
 		System.out.println("**************************");
 		System.out.println("*** mit walk v2");
-		mit_walk_v2(dir);
+//		mit_walk_v2(dir);
 		
 		System.out.println("**************************");
 		System.out.println("*** mit walkFileTree"); // nicht in der Prüfung
