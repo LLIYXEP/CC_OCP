@@ -3,6 +3,7 @@ package exam;
 import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.Locale;
 
 public class B04_Formatieren_ubd_Locale {
@@ -40,6 +41,19 @@ public class B04_Formatieren_ubd_Locale {
 		NumberFormat nf3 = NumberFormat.getCurrencyInstance();
 		String betrag3 = nf3.format(12.4567);
 		System.out.println("betrag3: " + betrag3);
+		
+		// Unwahrscheinlich in der Prufung
+		Locale.setDefault(Locale.GERMANY);
+		System.out.println("*** Landesangaben berucksichtigen (Datum)");
+		
+		DateTimeFormatter fmt3 = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT);
+		
+		String dateAsText3 = fmt3.format(LocalDate.now());
+		System.out.println("Heute mit default-Locale " + dateAsText3); // 27.02.20 fur default-Locale = de_DE
+		
+		DateTimeFormatter fmt4 = fmt3.withLocale(Locale.US);
+		String dateAsText4 = fmt4.format(LocalDate.now());
+		System.out.println("Heute mit US-Locale " + dateAsText4); // 2/27/20 fur default-Locale = US
 		
 	}
 	

@@ -55,6 +55,25 @@ public class B01_Properties {
 		}
 		
 		testLoad();
+		testLoad2();
+	}
+	
+	static void testLoad2() {
+		System.out.println("**** load");
+		
+		Properties props = new Properties();
+		
+		try (Reader reader = new BufferedReader(new FileReader("format.properties"))) {
+			props.load(reader);
+		} catch (Exception e) {
+		}
+		
+		System.out.println(props.getProperty("name1"));
+		System.out.println(props.getProperty("name2"));
+		System.out.println(props.getProperty("name3"));
+		System.out.println(props.getProperty("zeile"));
+		System.out.println(props.getProperty("name4"));
+		
 	}
 	
 	static void testLoad() {
