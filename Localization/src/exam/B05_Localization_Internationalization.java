@@ -15,6 +15,10 @@ public class B05_Localization_Internationalization {
 		 * Localization (l10n)
 		 * 
 		 * 		Anwendung fur eine bestimmte Sprache / ein bestimmtes Land) anpassen
+		 * 
+		 * Exam:
+		 * 	Die lokalisierten Ressourcen sind Z.B. ubersetzten Texte,
+		 * 	aber keine Daten (localized data) wie aktuelle Wahrungkurse
 		 */
 	}
 	

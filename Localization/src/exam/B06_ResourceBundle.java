@@ -15,18 +15,17 @@ public class B06_ResourceBundle {
 		
 //		String greeting = "Guten Tag!";
 		String greeting = bundle.getString("text.greeting");
-		System.out.println(greeting);
+		System.out.println(greeting); // Guten Tag!
 		
 		/*
 		 * ResourceBundle kann auch ein extra-Locale erstellt werden
 		 */
 		bundle = ResourceBundle.getBundle(baseName, Locale.CHINA);
 		greeting = bundle.getString("text.greeting");
-		System.out.println(greeting);
+		System.out.println(greeting); // Guten Tag!
 		
-//		Object result = bundle.getObject("text.greeting"); // exc
-		Object result = bundle.getObject("greeting");
-		System.out.println(result);
+		Object result = bundle.getObject("text.greeting");
+		System.out.println(result); // Guten Tag!
 	}
 	
 }
