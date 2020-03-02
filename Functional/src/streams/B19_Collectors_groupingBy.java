@@ -18,12 +18,12 @@ public class B19_Collectors_groupingBy {
 	
 	public static void main(String[] args) {
 		
-//		gruppingBy_v1();
-//		gruppingBy_v2();
+		gruppingBy_v1();
+		gruppingBy_v2();
 //		kleineAufgabe();
 //		kleineAufgabe2();
-//		gruppingBy_v3();
-		kleineAufgabe3();
+		gruppingBy_v3();
+//		kleineAufgabe3();
 	}
 	
 	static void kleineAufgabe3() {

@@ -10,7 +10,7 @@ import java.util.function.Predicate;
  * Voraussetzungen: 
  * 
  * - Die ''geplannte' Realisierung der abstrakte Methode (hier 'test') besteht nur aus dem Aufruf einer statische Methode
- * - Die Liste der Parameter der statischen Methoden entspticht det Liste der Parameter der abstrakten Methoden (IS-A wird Akzeptiert)
+ * - Die Liste der Parameter der statischen Methoden entspricht det Liste der Parameter der abstrakten Methoden (IS-A wird Akzeptiert)
  * - Falls die abstrakte Methode die return Anweisung hat, muss der Ruckgabe Typ der statische Methode mit dem typ der abstrakten Methode 'kompativel' sein.
  */
 class MyUtils1 {

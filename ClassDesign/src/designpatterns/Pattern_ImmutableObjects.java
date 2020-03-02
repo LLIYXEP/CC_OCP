@@ -20,6 +20,7 @@ final class MyIntValue {
 		return value;
 	}
 	
+	
 }
 
 //class X extends MyIntValue{
@@ -54,8 +55,7 @@ public class Pattern_ImmutableObjects {
 		
 		System.out.println(v1.getValue());
 		System.out.println(v1.getValue());
-		
-		
+
 		
 	}
 

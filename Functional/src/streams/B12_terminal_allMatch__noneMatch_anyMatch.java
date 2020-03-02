@@ -32,25 +32,25 @@ public class B12_terminal_allMatch__noneMatch_anyMatch {
 		System.out.println("ist mindestens ein Element positive: " + anyMatch); // true
 		
 		boolean anyMatch2 = list.stream().anyMatch(isNotNegative.negate());
-		System.out.println("ist mindestens ein Element negative: " + anyMatch2);
+		System.out.println("ist mindestens ein Element negative: " + anyMatch2); // true
 	
 			
 		/*
 		 * noneMatch(Predicate<? super T> predicate)
 		 */
 		result = list.stream().noneMatch(isPositiv);
-		System.out.println("ist kein einziges Element positiv: " + result);
+		System.out.println("ist kein einziges Element positiv: " + result); // false
 		
 		result = list.stream().noneMatch(x -> x < 0);
-		System.out.println("ist kein einziges Element negative: " + result);
+		System.out.println("ist kein einziges Element negative: " + result); // true
 		
 		
 		
 		System.out.println("****** fur leere Pipelines *****");
 		
-		System.out.println("allMatch(isPositive): " + Stream.<Integer>empty().allMatch(isPositiv));
-		System.out.println("anyMatch(isPositive): " + Stream.<Integer>empty().anyMatch(isPositiv));
-		System.out.println("noneMatch(isPositive): " + Stream.<Integer>empty().noneMatch(isPositiv));
+		System.out.println("allMatch(isPositive): " + Stream.<Integer>empty().allMatch(isPositiv)); // true
+		System.out.println("anyMatch(isPositive): " + Stream.<Integer>empty().anyMatch(isPositiv)); // false
+		System.out.println("noneMatch(isPositive): " + Stream.<Integer>empty().noneMatch(isPositiv)); // true
 		
 		
 		/*

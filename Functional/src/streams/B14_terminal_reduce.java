@@ -135,7 +135,7 @@ public class B14_terminal_reduce {
 		Integer reduce = list.stream()
 			.reduce(5, accumulator);
 		
-		System.out.println(reduce);
+		System.out.println(reduce); //15
 		
 		System.out.println(Stream.of(77).reduce(1,accumulator)); // 78
 		System.out.println(Stream.<Integer>empty().reduce(33, accumulator)); // 33

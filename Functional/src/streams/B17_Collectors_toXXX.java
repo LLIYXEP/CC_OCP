@@ -15,8 +15,8 @@ public class B17_Collectors_toXXX {
 	
 	public static void main(String[] args) {
 		
-//		toList_toSet_toCollection();
-		toMap();
+		toList_toSet_toCollection();
+//		toMap();
 		
 	}
 	
