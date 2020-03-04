@@ -1,5 +1,15 @@
 package kap01;
 
+interface Bb {
+	static class Aa{
+		
+	}
+	
+	interface Cc {
+		
+	}
+}
+
 interface I9 {
 	 private void m0() {} // Java 11, nicht in Java 8
 	 

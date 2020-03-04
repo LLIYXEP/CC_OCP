@@ -27,7 +27,6 @@ public class B04_Path_Paths_und_FileSystem {
 		
 		
 		
-		
 	}
 
 }
