@@ -1,5 +1,7 @@
 package kap01;
 
+import java.util.Arrays;
+
 interface Bb {
 	static class Aa{
 		

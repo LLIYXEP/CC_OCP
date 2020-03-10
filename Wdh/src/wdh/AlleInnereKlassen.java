@@ -37,4 +37,6 @@ public class AlleInnereKlassen {
 	void test2() {
 		new InnerClass();
 	}
+	
+	
 }
