@@ -33,10 +33,18 @@ interface I9 {
 }
 
 public class Q9 {
+	
 
-	public static void main(String[] args) {
+	public static void main(String[] args)  {
 		
 		
+		try {
+			Thread.sleep(1000);
+			System.out.println("A");
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("B");
+		}
 		
 	}
 	
