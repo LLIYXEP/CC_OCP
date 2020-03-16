@@ -17,6 +17,7 @@ public class B01_Klassen {
 		
 		Date d; // Millis seit dem 1.1.1970 (seit Java 1)
 		
+		
 		Instant x0; // Millis seit dem 1.1.1970 (seit Java 8)
 
 		LocalTime x1;
@@ -27,7 +28,7 @@ public class B01_Klassen {
 		ZonedDateTime x4; // Time + Date + ZoneId
 		
 		Period x5; // A date-based amount of time in the ISO-8601 calendar system,such as '2 years, 3 months and 4 days'. 
-		Duration x6; // A time-zone ID, such as Europe/Paris. 
+		Duration x6; // A time-based amount of time, such as '34.5 seconds'. 
 		
 		DateTimeFormatter fmt;
 		

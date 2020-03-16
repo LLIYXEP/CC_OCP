@@ -11,9 +11,10 @@ public class B02_Immutable {
 		
 		LocalTime var = LocalTime.of(hour, minute);
 		
-		var.minusHours(1); // Immutable!
+		LocalTime minusHours = var.minusHours(1); // Immutable!
 		
 		System.out.println(var.getHour()); // 2
+		System.out.println(minusHours.getHour()); // 1
 		
 		
 		
